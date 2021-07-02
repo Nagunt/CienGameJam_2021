@@ -2,27 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyPlayer : MonoBehaviour
+public class MyPlayer : MyCharacter
 {
-    [SerializeField] private Rigidbody2D rb2D;
-
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpSpeed;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        rb2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, 0);
-        if (Input.GetAxis("Jump") > 0)
-        {
-            Debug.Log("Jump");
-            rb2D.velocity += Vector2.up * jumpSpeed;
+        rb2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb2D.velocity.y);
+        if (IsGround) 
+        { 
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb2D.velocity = new Vector2(rb2D.velocity.x, 1 * jumpSpeed);
+            }
         }
     }
 }
