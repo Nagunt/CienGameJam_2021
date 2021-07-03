@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyEnemyAttack_Wolf : MyEnemyAttack
+public class MyEnemyAttack_SWolf : MyEnemyAttack
 {
     [SerializeField] SpriteRenderer model;
     [SerializeField] int damage;
@@ -13,7 +13,7 @@ public class MyEnemyAttack_Wolf : MyEnemyAttack
 
         IEnumerator _Routine()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(attackDelay);
             gameObject.SetActive(false);
         }
     }

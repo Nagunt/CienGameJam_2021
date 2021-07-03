@@ -1,4 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum MyEnemyPhase
+{
+    None = 0,
+    IDLE,
+    MOVE,
+    ATTACK,
+    RUN,
+    SWAY
+}
+
 
 public class MyEnemy : MyCharacter
 { 
@@ -15,7 +27,30 @@ public class MyEnemy : MyCharacter
             OnHPChanged();
         }
     }
-    private int attack;
+
+    protected bool isAlive;
+
+
+    [Header("- AI")]
+    protected MyEnemyPhase lastPhase = MyEnemyPhase.None;
+    [SerializeField] protected MyEnemyPhase phase;
+    [SerializeField] protected Transform target;
+    [Header("- Area")]
+    [SerializeField] protected ContactFilter2D contactFilter2D;
+    [SerializeField] protected Transform[] patrolArea;
+    [SerializeField] protected Collider2D detectArea;
+    [SerializeField] protected Collider2D attackDetectArea;
+
+
+
+    protected MyEnemyAttack attackData;
+    protected List<Collider2D> detect;
+
+    protected float delay = 0f;
+    protected int patrolIndex;
+    protected float minimumDistance = 0.1f;
+    protected Vector2[] patrolPos;
+    protected MyEnemyAttackPhase attackPhase;
 
     private void Awake()
     {
@@ -24,7 +59,7 @@ public class MyEnemy : MyCharacter
 
     protected virtual void Init()
     {
-
+        isAlive = true;
     }
 
     protected virtual void Dead()
@@ -34,7 +69,7 @@ public class MyEnemy : MyCharacter
     
     void OnHPChanged()
     {
-        if (hp < 0)
+        if (hp <= 0)
         {
             Dead();
         }
