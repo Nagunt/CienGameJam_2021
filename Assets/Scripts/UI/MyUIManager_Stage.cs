@@ -11,6 +11,7 @@ public class MyUIManager_Stage : MonoBehaviour
     public static MyUIManager_Stage Instance { get; private set; } = null;
     [SerializeField] private Image image_Fade;
     [SerializeField] private GameObject ui_Pause;
+    [SerializeField] private GameObject ui_Clear;
     [SerializeField] private GameObject[] ui_Health;
     [SerializeField] private Text ui_StageName;
     [SerializeField] private Text ui_StagePurpose;
@@ -20,6 +21,7 @@ public class MyUIManager_Stage : MonoBehaviour
         Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 0), 1f).
             OnStart(() =>
             {
+                image_Fade.gameObject.SetActive(true);
                 image_Fade.raycastTarget = false;
                 image_Fade.color = new Color(0, 0, 0, 1);
             });
@@ -29,6 +31,7 @@ public class MyUIManager_Stage : MonoBehaviour
         Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 1), 1f).
             OnStart(() =>
             {
+                image_Fade.gameObject.SetActive(true);
                 image_Fade.raycastTarget = true;
                 image_Fade.color = new Color(0, 0, 0, 0);
             }).
@@ -41,9 +44,9 @@ public class MyUIManager_Stage : MonoBehaviour
 
     public void OnClick_Resume()
     {
-        if (!MyStageManager.Instance.GameState)
+        if (!MyGameManager.Instance.GameState)
         {
-            MyStageManager.Instance.GameState = true;
+            MyGameManager.Instance.GameState = true;
             Time.timeScale = 1;
             ui_Pause.SetActive(false);
         }
@@ -70,6 +73,16 @@ public class MyUIManager_Stage : MonoBehaviour
         ui_StagePurpose.text = _content;
     }
 
+    public void SetUI_Clear()
+    {
+        if (MyGameManager.Instance.GameState)
+        {
+            MyGameManager.Instance.GameState = false;
+            Time.timeScale = 0;
+            ui_Clear.SetActive(true);
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -79,9 +92,9 @@ public class MyUIManager_Stage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (MyStageManager.Instance.GameState)
+            if (MyGameManager.Instance.GameState)
             {
-                MyStageManager.Instance.GameState = false;
+                MyGameManager.Instance.GameState = false;
                 Time.timeScale = 0;
                 ui_Pause.SetActive(true);
             }

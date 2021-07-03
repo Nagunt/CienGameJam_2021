@@ -13,6 +13,7 @@ public class MyUIManager_Select : MonoBehaviour
         Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 0), 1f).
             OnStart(() =>
             {
+                image_Fade.gameObject.SetActive(true);
                 image_Fade.raycastTarget = false;
                 image_Fade.color = new Color(0, 0, 0, 1);
             });
@@ -21,7 +22,17 @@ public class MyUIManager_Select : MonoBehaviour
 
     public void OnClick_Stage(int buttonIndex)
     {
-        MyStageManager.StageIndex = buttonIndex;
-        SceneManager.LoadScene("StageScene");
+        MyGameManager.StageIndex = buttonIndex;
+        Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 1), 1f).
+            OnStart(() =>
+            {
+                image_Fade.gameObject.SetActive(true);
+                image_Fade.raycastTarget = true;
+                image_Fade.color = new Color(0, 0, 0, 0);
+            }).
+            OnComplete(() =>
+            {
+                SceneManager.LoadScene("StageScene");
+            });
     }
 }

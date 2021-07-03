@@ -16,6 +16,7 @@ public class MyUIManager_Main : MonoBehaviour
         Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 1), 1f).
             OnStart(() =>
             {
+                image_Fade.gameObject.SetActive(true);
                 image_Fade.raycastTarget = true;
                 image_Fade.color = new Color(0, 0, 0, 0);
             }).
@@ -40,6 +41,7 @@ public class MyUIManager_Main : MonoBehaviour
         Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 0), 1f).
             OnStart(() =>
             {
+                image_Fade.gameObject.SetActive(true);
                 image_Fade.raycastTarget = false;
                 image_Fade.color = new Color(0, 0, 0, 1);
             });

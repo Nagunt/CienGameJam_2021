@@ -58,12 +58,14 @@ public class MyEnemy : MyCharacter
     protected virtual void Init()
     {
         isAlive = true;
+        MyGameManager.Instance.EnemyCount++;
     }
 
     protected virtual void Dead()
     {
         Debug.Log(name + " Dead");
         isAlive = false;
+        MyGameManager.Instance.EnemyCount--;
     }
     
     void OnHPChanged()

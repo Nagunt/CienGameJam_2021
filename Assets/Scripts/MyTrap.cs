@@ -12,16 +12,23 @@ public class MyTrap : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
 
+    private Sequence shootingSequence;
+
 
     private void Start()
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence.AppendCallback(() =>
+        shootingSequence = DOTween.Sequence();
+        shootingSequence.AppendCallback(() =>
         {
             Instantiate(trap, shootingPos.position, Quaternion.identity).Execute(direction);
         }).
         AppendInterval(1.5f).
         SetLoops(-1);
+    }
+
+    private void OnDestroy()
+    {
+        shootingSequence.Kill();
     }
 
 
