@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MyGameManager : MonoBehaviour
 {
-    public static int StageIndex;
+    public static int StageIndex = 0;
+    public static int LastClearStageIndex = 0;
     public static MyGameManager Instance { get; private set; } = null;
 
 
