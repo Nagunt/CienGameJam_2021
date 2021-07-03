@@ -8,7 +8,10 @@ public class MyStageManager : MonoBehaviour
 
     [SerializeField]
     private Transform terrain;
+    [SerializeField]
+    private Transform movingPlatform;
     public List<MyTerrain> terrainInfo;
+    public List<MyMovingPlatform> movingPlatforms;
 
     private void Awake()
     {
@@ -23,5 +26,12 @@ public class MyStageManager : MonoBehaviour
             newInfo.Add(terrain.GetChild(i).GetComponent<MyTerrain>());
         }
         terrainInfo = newInfo.OrderBy(x => x.Depth).ToList();
+
+        List<MyMovingPlatform> newPlatformInfo = new List<MyMovingPlatform>(movingPlatform.childCount);
+        for (int i = 0; i < movingPlatform.childCount; ++i)
+        {
+            newPlatformInfo.Add(movingPlatform.GetChild(i).GetComponent<MyMovingPlatform>());
+        }
+        movingPlatforms = newPlatformInfo;
     }
 }
