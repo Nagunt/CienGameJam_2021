@@ -48,25 +48,33 @@ public class MyCharacter : MonoBehaviour
                 groundCol2D = terrain.GetCollider2D();
             }
         }
-        bool checker = false;
-        if (groundCol2D != null)
+
+        for(int i = 0; i < MyStageManager.Instance.movingPlatforms.Count; ++i)
         {
-            hits.Clear();
-            //Physics2D.Raycast(transform.position, Vector2.down, groundFilter, hits, groundDistance);
-            Physics2D.BoxCast(transform.position, new Vector2(col2D.size.x, groundDistance), 0, Vector2.down, groundFilter, hits, groundDistance);
-            if(hits.Count > 0)
+            MyMovingPlatform platform = MyStageManager.Instance.movingPlatforms[i];
+            Physics2D.IgnoreCollision(col2D, platform.GetCollider2D(), transform.position.y < platform.Depth);
+            if(transform.position.y >= platform.Depth && transform.position.y - platform.Depth < 1)
             {
-                for (int i = 0; i < hits.Count; ++i)
+                groundCol2D = platform.GetCollider2D();
+            }
+        }
+
+        bool checker = false;
+
+        hits.Clear();
+        //Physics2D.Raycast(transform.position, Vector2.down, groundFilter, hits, groundDistance);
+        Physics2D.BoxCast(transform.position, new Vector2(col2D.size.x, groundDistance), 0, Vector2.down, groundFilter, hits, groundDistance);
+        if (hits.Count > 0)
+        {
+            for (int i = 0; i < hits.Count; ++i)
+            {
+                if (hits[i].collider == groundCol2D)
                 {
-                    if(hits[i].collider == groundCol2D)
-                    {
-                        checker = true;
-                        break;
-                    }
+                    checker = true;
+                    break;
                 }
             }
         }
-        
         IsGround = checker;
 
         Vector2 direction = moveVector.normalized;
@@ -81,7 +89,7 @@ public class MyCharacter : MonoBehaviour
             else if (direction.y < -0.5f)
             {
                 hits.Clear();
-                Physics2D.Raycast(transform.position, Vector2.down, groundFilter, hits);
+                Physics2D.BoxCast(transform.position, new Vector2(col2D.size.x, groundDistance), 0, Vector2.down, groundFilter, hits);
                 int count = 0;
                 for(int i = 0; i < hits.Count; ++i)
                 {
@@ -93,10 +101,19 @@ public class MyCharacter : MonoBehaviour
                         }
                         count++;
                     }
+                    else if(hits[i].collider.TryGetComponent(out MyMovingPlatform platform))
+                    {
+                        if(transform.position.y < platform.Depth)
+                        {
+                            continue;
+                        }
+                        count++;
+                    }
                 }
                 if (count > 1)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y - groundDistance, transform.position.z);
+                    Debug.Log("¾Æ·¡·Î ³«ÇÏ");
+                    transform.position = new Vector3(transform.position.x, transform.position.y - (groundDistance * 2), transform.position.z);
                 }
             }
         }
