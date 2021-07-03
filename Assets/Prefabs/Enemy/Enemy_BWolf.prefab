@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 8506312342804893861}
   - component: {fileID: 8506312342804893860}
   - component: {fileID: 8506312342804893851}
+  - component: {fileID: 3534623976119086607}
   m_Layer: 7
   m_Name: Enemy_BWolf
   m_TagString: Untagged
@@ -404,6 +405,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   phase: 0
   target: {fileID: 0}
+  animator: {fileID: 3534623976119086607}
   contactFilter2D:
     useTriggers: 1
     useLayerMask: 1
@@ -425,6 +427,25 @@ MonoBehaviour:
   attackDetectArea: {fileID: 8506312341211556124}
   attack: {fileID: 8506312341630922595}
   attack_1: {fileID: 3010266418620206080}
+--- !u!95 &3534623976119086607
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8506312342804893862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 498d8d6e16b241340a0b1e77a2340b8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8506312343076809525
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,12 +758,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e09a0024aa306e4098f4a5b935344f7, type: 3}
---- !u!4 &3010266418620206087 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6902579356062522748, guid: 3e09a0024aa306e4098f4a5b935344f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 8506312341257195899}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3010266418620206080 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6902579356062522747, guid: 3e09a0024aa306e4098f4a5b935344f7,
@@ -755,3 +770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05295eca8a159394d8333bf23a28d9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3010266418620206087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6902579356062522748, guid: 3e09a0024aa306e4098f4a5b935344f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8506312341257195899}
+  m_PrefabAsset: {fileID: 0}

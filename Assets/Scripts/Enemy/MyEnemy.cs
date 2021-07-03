@@ -35,6 +35,8 @@ public class MyEnemy : MyCharacter
     protected MyEnemyPhase lastPhase = MyEnemyPhase.None;
     [SerializeField] protected MyEnemyPhase phase;
     [SerializeField] protected Transform target;
+    [Header("- Animator")]
+    [SerializeField] protected Animator animator;
     [Header("- Area")]
     [SerializeField] protected ContactFilter2D contactFilter2D;
     [SerializeField] protected Transform[] patrolArea;

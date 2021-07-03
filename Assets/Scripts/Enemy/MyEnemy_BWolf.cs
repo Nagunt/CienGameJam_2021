@@ -31,6 +31,9 @@ public class MyEnemy_BWolf : MyEnemy
     
     private void Update()
     {
+        animator.SetInteger("HP", HP);
+        animator.SetFloat("xSpeed", rb2D.velocity.x);
+        animator.SetBool("IsGround", IsGround);
         if (isAlive)
         {
             detect.Clear();
@@ -132,8 +135,11 @@ public class MyEnemy_BWolf : MyEnemy
                             attack.localRotation = Quaternion.Euler(0, target.position.x > transform.position.x ? 180 : 0, 0);
                             attackData = attack_1;
                             attackPhase = MyEnemyAttackPhase.BEFORE;
+                            animator.SetBool("IsAttack", true);
                             lastPhase = phase;
                         }
+
+                        animator.SetInteger("AttackPhase", (int)attackPhase);
 
                         switch (attackPhase)
                         {
@@ -172,6 +178,7 @@ public class MyEnemy_BWolf : MyEnemy
                                     }
                                     else
                                     {
+                                        animator.SetBool("IsAttack", false);
                                         phase = MyEnemyPhase.MOVE;
                                         delay = 0;
                                     }

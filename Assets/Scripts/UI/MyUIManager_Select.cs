@@ -14,7 +14,6 @@ public class MyUIManager_Select : MonoBehaviour
     [SerializeField]
     private Sprite[] thirdNode;
 
-
     [SerializeField] private Image image_Fade;
     [SerializeField] private Image image_Background;
     [SerializeField] private GameObject[] nodeButtons;
