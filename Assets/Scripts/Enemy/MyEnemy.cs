@@ -41,8 +41,6 @@ public class MyEnemy : MyCharacter
     [SerializeField] protected Collider2D detectArea;
     [SerializeField] protected Collider2D attackDetectArea;
 
-
-
     protected MyEnemyAttack attackData;
     protected List<Collider2D> detect;
 
@@ -64,7 +62,8 @@ public class MyEnemy : MyCharacter
 
     protected virtual void Dead()
     {
-
+        Debug.Log(name + " Dead");
+        isAlive = false;
     }
     
     void OnHPChanged()

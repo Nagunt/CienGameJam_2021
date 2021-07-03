@@ -34,4 +34,14 @@ public class MyUIManager_Main : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void Start()
+    {
+        Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 0), 1f).
+            OnStart(() =>
+            {
+                image_Fade.raycastTarget = false;
+                image_Fade.color = new Color(0, 0, 0, 1);
+            });
+    }
 }

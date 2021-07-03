@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867171592606033358}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Point_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6368826565005309386}
   - component: {fileID: 122775710737911424}
   - component: {fileID: 7803252935763144318}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: DetectArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ MonoBehaviour:
   col2D: {fileID: 867171592917154300}
   rb2D: {fileID: 867171592917154301}
   speed: 8
-  jumpSpeed: 20
+  jumpSpeed: 22
   isGround: 0
   groundDistance: 0.05
   groundFilter:
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867171593435023519}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867171593950072119}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867171593954068309}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: PatrolArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 867171594156842466}
   - component: {fileID: 867171594156842467}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: AttackCheckArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1.1
 --- !u!1 &867171594353282893
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 867171594353282899}
   - component: {fileID: 867171594353282892}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: RunawayArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867171594466791321}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Point_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,11 +681,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 867171593950072119}
     m_Modifications:
-    - target: {fileID: 8959314650337704969, guid: 16ce867e6582a62408dbb60fa9d4fde8,
-        type: 3}
-      propertyPath: attackAfterDelay
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8959314650337704970, guid: 16ce867e6582a62408dbb60fa9d4fde8,
         type: 3}
       propertyPath: m_Name

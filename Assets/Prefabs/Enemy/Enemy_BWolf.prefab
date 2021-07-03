@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8506312341211556127}
   - component: {fileID: 8506312341211556124}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: AttackCheckArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506312341384663739}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: PatrolArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506312341630922595}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506312341980365888}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Point_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506312342254777247}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Point_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506312342724778549}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ MonoBehaviour:
   col2D: {fileID: 8506312342804893861}
   rb2D: {fileID: 8506312342804893860}
   speed: 5
-  jumpSpeed: 20
+  jumpSpeed: 22
   isGround: 0
   groundDistance: 0.05
   groundFilter:
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 532525415540405627}
   - component: {fileID: 6185850405739633157}
   - component: {fileID: 2468242315487459210}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: DetectArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,11 +679,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Attack_BWolf
-      objectReference: {fileID: 0}
-    - target: {fileID: 6902579356062522744, guid: 3e09a0024aa306e4098f4a5b935344f7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6902579356062522748, guid: 3e09a0024aa306e4098f4a5b935344f7,
         type: 3}

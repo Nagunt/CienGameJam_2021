@@ -19,10 +19,13 @@ public class MyEnemy_BWolf : MyEnemy
 
     private void OnCollisionEnter2D(Collision2D col2D)
     {
-        if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
+        if (isAlive)
         {
-            // 플레이어 몸통 히트 대미지
-            Debug.Log("몸통박치기!");
+            if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
+            {
+                // 플레이어 몸통 히트 대미지
+                Debug.Log("몸통박치기!");
+            }
         }
     }
     

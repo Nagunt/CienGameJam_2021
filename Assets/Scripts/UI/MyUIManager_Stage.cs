@@ -2,18 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class MyUIManager_Stage : MonoBehaviour
 {
+
     public static MyUIManager_Stage Instance { get; private set; } = null;
+    [SerializeField] private Image image_Fade;
     [SerializeField] private GameObject ui_Pause;
     [SerializeField] private GameObject[] ui_Health;
     [SerializeField] private Text ui_StageName;
     [SerializeField] private Text ui_StagePurpose;
 
+    private void Start()
+    {
+        Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 0), 1f).
+            OnStart(() =>
+            {
+                image_Fade.raycastTarget = false;
+                image_Fade.color = new Color(0, 0, 0, 1);
+            });
+    }
     public void OnClick_Main()
     {
-
+        Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 1), 1f).
+            OnStart(() =>
+            {
+                image_Fade.raycastTarget = true;
+                image_Fade.color = new Color(0, 0, 0, 0);
+            }).
+            OnComplete(() =>
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("MainScene");
+            }).SetUpdate(true);
     }
 
     public void OnClick_Resume()
