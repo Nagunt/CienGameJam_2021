@@ -10,10 +10,7 @@ public class MyPlayerAttack_Inner : MonoBehaviour
     {
         if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Enemy")))
         {
-            Debug.Log("Enemy Damage: " + damage);
-
             col2D.GetComponentInParent<MyEnemy>().HP -= damage;
-
         }
     }
 }

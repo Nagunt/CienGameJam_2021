@@ -11,7 +11,7 @@ public class MyEnemy_BWolf : MyEnemy
     [SerializeField] protected MyEnemyAttack attack_1;
     protected override void Init()
     {
-        HP = 4;
+        hp = 4;
         phase = MyEnemyPhase.IDLE;
         detect = new List<Collider2D>();
         base.Init();
@@ -24,7 +24,7 @@ public class MyEnemy_BWolf : MyEnemy
             if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
             {
                 // 플레이어 몸통 히트 대미지
-                Debug.Log("몸통박치기!");
+                col2D.gameObject.GetComponentInParent<MyPlayer>().HP -= 1;
             }
         }
     }

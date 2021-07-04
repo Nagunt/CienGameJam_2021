@@ -338,9 +338,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.205, y: 2.0175}
-    newSize: {x: 3.205, y: 2.0175}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 3.3075, y: 1.815}
+    newSize: {x: 3.3075, y: 1.815}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -699,6 +699,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Attack_BWolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902579356062522744, guid: 3e09a0024aa306e4098f4a5b935344f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6902579356062522748, guid: 3e09a0024aa306e4098f4a5b935344f7,
         type: 3}

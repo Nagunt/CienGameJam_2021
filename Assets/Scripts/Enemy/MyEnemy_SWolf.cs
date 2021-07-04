@@ -11,7 +11,7 @@ public class MyEnemy_SWolf : MyEnemy
 
     protected override void Init()
     {
-        HP = 2;
+        hp = 2;
         phase = MyEnemyPhase.IDLE;
         detect = new List<Collider2D>();
         base.Init();
@@ -25,6 +25,7 @@ public class MyEnemy_SWolf : MyEnemy
             {
                 // 플레이어 몸통 히트 대미지
                 Debug.Log("몸통박치기!");
+                col2D.gameObject.GetComponentInParent<MyPlayer>().HP -= 1;
             }
         }
     }

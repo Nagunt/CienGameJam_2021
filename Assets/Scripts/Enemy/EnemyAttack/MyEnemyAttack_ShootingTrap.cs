@@ -17,7 +17,7 @@ public class MyEnemyAttack_ShootingTrap : MyEnemyAttack
     {
         if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
-            Debug.Log("Player Damage : " + damage);
+            col2D.GetComponentInParent<MyPlayer>().HP -= 1;
             Destroy(gameObject);
         }
         else if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Terrain")) || col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Border")))

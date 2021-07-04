@@ -18,6 +18,7 @@ public class MyUIManager_Stage : MonoBehaviour
     [SerializeField] private Text ui_StageName;
     [SerializeField] private Text ui_StagePurpose;
     [SerializeField] private Text ui_EnemyCount;
+    [SerializeField] private Text ui_Score;
 
     private void Start()
     {
@@ -60,6 +61,14 @@ public class MyUIManager_Stage : MonoBehaviour
         MyGameManager.Instance.GameState = true;
         Time.timeScale = 1;
         SceneManager.LoadScene("StageScene");
+    }
+
+    public void OnClick_Clear()
+    {
+        MyGameManager.Instance.GameState = true;
+        Time.timeScale = 1;
+        MyGameManager.LastClearStageIndex++;
+        SceneManager.LoadScene("SelectScene");
     }
 
     public void SetUI_Health(int _value)
@@ -109,6 +118,7 @@ public class MyUIManager_Stage : MonoBehaviour
         {
             MyGameManager.Instance.GameState = false;
             Time.timeScale = 0;
+            ui_Score.text = $"Score : {MyGameManager.Score}";
             ui_Clear.SetActive(true);
         }
     }
@@ -126,6 +136,7 @@ public class MyUIManager_Stage : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
     }
 
     private void Update()

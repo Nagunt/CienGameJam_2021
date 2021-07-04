@@ -22,7 +22,7 @@ public class MyEnemyAttack_BWolf : MyEnemyAttack
     {
         if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
-            Debug.Log("Player Damage : " + damage);
+            col2D.GetComponentInParent<MyPlayer>().HP -= 1;
         }
     }
 }

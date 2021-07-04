@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum MyEnemyPhase
 {
@@ -13,8 +14,10 @@ public enum MyEnemyPhase
 
 
 public class MyEnemy : MyCharacter
-{ 
-    private int hp;
+{
+    protected Sequence sequence;
+
+    protected int hp;
     public int HP
     {
         get
@@ -23,8 +26,28 @@ public class MyEnemy : MyCharacter
         }
         set
         {
+            if (!sequence.IsActive())
+            {
+
+                sequence = DOTween.Sequence();
+                sequence.OnStart(() =>
+                {
+                    animator.SetBool("IsHit", true);
+                }).
+                AppendInterval(0.5f).
+                AppendCallback(() =>
+                {
+                    animator.SetBool("IsHit", false);
+                });
+            }
             hp = value;
-            OnHPChanged();
+            if (hp <= 0)
+            {
+                if (isAlive)
+                {
+                    Dead();
+                }
+            }
         }
     }
 
@@ -65,16 +88,13 @@ public class MyEnemy : MyCharacter
 
     protected virtual void Dead()
     {
+        model.DOColor(new Color(1, 1, 1, 0), 1f);
         Debug.Log(name + " Dead");
         isAlive = false;
         MyGameManager.Instance.EnemyCount--;
+        
+        rb2D.isKinematic = true;
+        col2D.enabled = false;
     }
-    
-    void OnHPChanged()
-    {
-        if (hp <= 0)
-        {
-            Dead();
-        }
-    }
+
 }
