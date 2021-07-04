@@ -20,12 +20,13 @@ public class MyPlayer : MyCharacter
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("플레이어");
         Vector2 inputVector = Vector2.zero;
         if (Input.GetKey(KeyCode.S))
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                Debug.Log("낙하");
                 inputVector.y = -1;
             }
         }
@@ -33,18 +34,23 @@ public class MyPlayer : MyCharacter
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                Debug.Log("쩜프");
                 inputVector.y = 1;
             }
         }
         if (Input.GetKey(KeyCode.A))
         {
+            Debug.Log("A 입력");
             inputVector.x -= 1;
             Attack.localRotation = Quaternion.Euler(0, 180, 0);
+            model.flipX = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
+            Debug.Log("D 입력");
             inputVector.x += 1;
             Attack.localRotation = Quaternion.Euler(0, 0, 0);
+            model.flipX = false;
         }
         if (inputVector.x == 0)
         {

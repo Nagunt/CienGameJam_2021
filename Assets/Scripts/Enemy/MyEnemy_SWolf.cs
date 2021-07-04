@@ -31,6 +31,9 @@ public class MyEnemy_SWolf : MyEnemy
 
     private void Update()
     {
+        animator.SetInteger("HP", HP);
+        animator.SetFloat("xSpeed", rb2D.velocity.x);
+        animator.SetBool("IsGround", IsGround);
         if (isAlive)
         {
             detect.Clear();
@@ -49,15 +52,49 @@ public class MyEnemy_SWolf : MyEnemy
                                 patrolPos = new Vector2[patrolArea.Length];
                                 for (int i = 0; i < patrolPos.Length; ++i)
                                 {
-                                    patrolPos[i] = patrolArea[i].position;
+                                    RaycastHit2D borderCheck = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.15f), patrolArea[i].localPosition, patrolArea[i].localPosition.magnitude, LayerMask.GetMask("Border"));
+                                    if (borderCheck.collider != null)
+                                    {
+                                        patrolPos[i] = new Vector2(borderCheck.point.x - col2D.size.x * .5f * (patrolArea[i].localPosition.x > 0 ? 1 : -1), borderCheck.point.y - 0.15f);
+                                    }
+                                    else
+                                    {
+                                        patrolPos[i] = patrolArea[i].position;
+                                    }
+
+                                    RaycastHit2D groundCheckLeft = Physics2D.Raycast(new Vector2(patrolPos[i].x - col2D.size.x * .5f, patrolPos[i].y), Vector2.down, 0.15f, LayerMask.GetMask("Terrain"));
+                                    RaycastHit2D groundCheckRight = Physics2D.Raycast(new Vector2(patrolPos[i].x + col2D.size.x * .5f, patrolPos[i].y), Vector2.down, 0.15f, LayerMask.GetMask("Terrain"));
+
+                                    if (groundCheckLeft.collider == null || groundCheckRight.collider == null)
+                                    {
+                                        RaycastHit2D groundCheck = Physics2D.Raycast(
+                                            new Vector2(patrolPos[i].x + col2D.size.x * .5f * (patrolArea[i].localPosition.x > 0 ? 1 : -1), patrolPos[i].y - 0.15f),
+                                            (patrolArea[i].localPosition.x > 0 ? Vector2.left : Vector2.right),
+                                            Mathf.Abs(patrolPos[i].x - transform.position.x),
+                                            LayerMask.GetMask("Terrain"));
+                                        if (groundCheck.collider != null)
+                                        {
+                                            patrolPos[i] = new Vector2(groundCheck.point.x - col2D.size.x * .5f * (patrolArea[i].localPosition.x > 0 ? 1 : -1), groundCheck.point.y + 0.15f);
+                                        }
+                                        else
+                                        {
+                                            patrolPos[i] = transform.position;
+                                        }
+                                    }
                                 }
                             }
                             lastPhase = phase;
                         }
                         if (Physics2D.OverlapCollider(detectArea, contactFilter2D, detect) > 0)
                         {
-                            target = detect[0].transform;
-                            phase = MyEnemyPhase.MOVE;
+                            Vector2 nowPos = new Vector2(transform.position.x, transform.position.y);
+                            Vector2 targetPos = new Vector2(detect[0].transform.position.x, detect[0].transform.position.y);
+                            RaycastHit2D check = Physics2D.Raycast(nowPos, targetPos - nowPos, (targetPos - nowPos).magnitude, LayerMask.GetMask("Border"));
+                            if (check.collider == null)
+                            {
+                                target = detect[0].transform;
+                                phase = MyEnemyPhase.MOVE;
+                            }
                         }
 
                         if (phase == MyEnemyPhase.IDLE)
@@ -66,6 +103,7 @@ public class MyEnemy_SWolf : MyEnemy
                             {
                                 if (transform.position.x > patrolPos[patrolIndex].x + minimumDistance || transform.position.x < patrolPos[patrolIndex].x - minimumDistance)
                                 {
+                                    model.flipX = patrolPos[patrolIndex].x > transform.position.x;
                                     Move(patrolPos[patrolIndex] - (Vector2)transform.position);
                                 }
                                 else
@@ -112,7 +150,9 @@ public class MyEnemy_SWolf : MyEnemy
                         {
                             if (target != null)
                             {
+                                animator.SetBool("IsAttack", false);
                                 Move(target.position - transform.position);
+                                model.flipX = target.position.x > transform.position.x;
                             }
                         }
                         else
@@ -132,8 +172,12 @@ public class MyEnemy_SWolf : MyEnemy
                             attack.localRotation = Quaternion.Euler(0, target.position.x > transform.position.x ? 180 : 0, 0);
                             attackData = attack_1;
                             attackPhase = MyEnemyAttackPhase.BEFORE;
+                            model.flipX = target.position.x > transform.position.x;
+                            animator.SetBool("IsAttack", true);
                             lastPhase = phase;
                         }
+
+                        animator.SetInteger("AttackPhase", (int)attackPhase);
 
                         switch (attackPhase)
                         {
@@ -185,6 +229,7 @@ public class MyEnemy_SWolf : MyEnemy
                         if (lastPhase != phase)
                         {
                             // 페이즈 변경이 일어난 프레임에만 실행
+                            animator.SetBool("IsAttack", false);
                             delay = 0;
                             lastPhase = phase;
                         }
@@ -195,11 +240,13 @@ public class MyEnemy_SWolf : MyEnemy
                             {
                                 if (target != null)
                                 {
+                                    model.flipX = target.position.x < transform.position.x;
                                     Move(transform.position - target.position);
                                 }
                             }
                             else
                             {
+                                model.flipX = target.position.x > transform.position.x;
                                 Stop();
                                 // 아무것도 안해요
                             }

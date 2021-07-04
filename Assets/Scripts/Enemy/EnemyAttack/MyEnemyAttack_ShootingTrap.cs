@@ -20,7 +20,7 @@ public class MyEnemyAttack_ShootingTrap : MyEnemyAttack
             Debug.Log("Player Damage : " + damage);
             Destroy(gameObject);
         }
-        else if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Terrain")))
+        else if (col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Terrain")) || col2D.gameObject.layer.Equals(LayerMask.NameToLayer("Border")))
         {
             Destroy(gameObject);
         }

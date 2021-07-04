@@ -78,7 +78,7 @@ public class MyCharacter : MonoBehaviour
         IsGround = checker;
 
         Vector2 direction = moveVector.normalized;
-        model.flipX = direction.x < 0;
+        
         if (IsGround)
         {
             if (direction.y > 0.5f)

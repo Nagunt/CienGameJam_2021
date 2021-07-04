@@ -52,7 +52,7 @@ public class MyEnemy : MyCharacter
     protected Vector2[] patrolPos;
     protected MyEnemyAttackPhase attackPhase;
 
-    private void Awake()
+    private void Start()
     {
         Init();
     }

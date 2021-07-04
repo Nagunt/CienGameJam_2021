@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 867171592917154300}
   - component: {fileID: 867171592917154301}
   - component: {fileID: 867171592917154302}
+  - component: {fileID: 850108294140951682}
   m_Layer: 7
   m_Name: Enemy_SWolf
   m_TagString: Untagged
@@ -259,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867171592917154303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4, y: -2.992, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 867171594125694837}
@@ -292,7 +293,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.75}
+  m_Size: {x: 0.95, y: 0.75}
   m_EdgeRadius: 0
 --- !u!50 &867171592917154301
 Rigidbody2D:
@@ -350,6 +351,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   phase: 0
   target: {fileID: 0}
+  animator: {fileID: 850108294140951682}
   contactFilter2D:
     useTriggers: 1
     useLayerMask: 1
@@ -370,6 +372,25 @@ MonoBehaviour:
   runawayArea: {fileID: 867171594353282892}
   attack: {fileID: 867171593950072119}
   attack_1: {fileID: 969829929877583478}
+--- !u!95 &850108294140951682
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867171592917154303}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 498d8d6e16b241340a0b1e77a2340b8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &867171593435023512
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,8 +513,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867171594125694839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.375, z: 0}
-  m_LocalScale: {x: 1, y: 0.75, z: 1}
+  m_LocalPosition: {x: 0.01, y: -0.11, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children: []
   m_Father: {fileID: 867171592917153283}
   m_RootOrder: 0
@@ -538,9 +559,8 @@ SpriteRenderer:
   m_SortingLayerID: -1862184373
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
-    type: 3}
-  m_Color: {r: 0.7830189, g: 0.22530258, b: 0.22530258, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7bcc9d432808fe24f946a47829da6158, type: 3}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

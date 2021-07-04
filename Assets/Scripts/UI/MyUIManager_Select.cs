@@ -21,7 +21,7 @@ public class MyUIManager_Select : MonoBehaviour
     private Sequence mapSequence;
     private void Start()
     {
-        MyGameManager.LastClearStageIndex = 1;
+        MyGameManager.LastClearStageIndex = 2;
         Tweener fadeTweener = image_Fade.DOColor(new Color(0, 0, 0, 0), 0.5f).
             OnStart(() =>
             {

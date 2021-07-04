@@ -254,8 +254,8 @@ MonoBehaviour:
   model: {fileID: 7027658266579840961}
   col2D: {fileID: 7027658266280796990}
   rb2D: {fileID: 7027658266280796977}
-  speed: 3
-  jumpSpeed: 20
+  speed: 4
+  jumpSpeed: 22
   isGround: 0
   groundDistance: 0.05
   groundFilter:
@@ -285,7 +285,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027658266280796976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 498cb17134de6f040a26e0836472a4a7, type: 2}
   m_CullingMode: 0

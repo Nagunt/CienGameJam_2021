@@ -12,9 +12,12 @@ public class MyUIManager_Stage : MonoBehaviour
     [SerializeField] private Image image_Fade;
     [SerializeField] private GameObject ui_Pause;
     [SerializeField] private GameObject ui_Clear;
+    [SerializeField] private GameObject ui_GameOver;
     [SerializeField] private GameObject[] ui_Health;
+    [SerializeField] private Text ui_Time;
     [SerializeField] private Text ui_StageName;
     [SerializeField] private Text ui_StagePurpose;
+    [SerializeField] private Text ui_EnemyCount;
 
     private void Start()
     {
@@ -52,6 +55,13 @@ public class MyUIManager_Stage : MonoBehaviour
         }
     }
 
+    public void OnClick_ReStart()
+    {
+        MyGameManager.Instance.GameState = true;
+        Time.timeScale = 1;
+        SceneManager.LoadScene("StageScene");
+    }
+
     public void SetUI_Health(int _value)
     {
         if(0 <= _value && _value <= ui_Health.Length)
@@ -67,10 +77,30 @@ public class MyUIManager_Stage : MonoBehaviour
         }
     }
 
-    public void SetUI_StageInfo(string _name, string _content)
+    public void SetUI_StageInfo(string _name, string _purpose)
     {
         ui_StageName.text = _name;
-        ui_StagePurpose.text = _content;
+        ui_StagePurpose.text = _purpose;
+    }
+
+    public void SetUI_EnemyCount(int _count)
+    {
+        ui_EnemyCount.text = $"x {_count}";
+    }
+
+    public void SetUI_Time(int _time)
+    {
+        ui_Time.text = $"{_time / 60} : {_time % 60}";
+    }
+
+    public void SetUI_Pause()
+    {
+        if (MyGameManager.Instance.GameState)
+        {
+            MyGameManager.Instance.GameState = false;
+            Time.timeScale = 0;
+            ui_Pause.SetActive(true);
+        }
     }
 
     public void SetUI_Clear()
@@ -83,6 +113,16 @@ public class MyUIManager_Stage : MonoBehaviour
         }
     }
 
+    public void SetUI_GameOver()
+    {
+        if (MyGameManager.Instance.GameState)
+        {
+            MyGameManager.Instance.GameState = false;
+            Time.timeScale = 0;
+            ui_GameOver.SetActive(true);
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -92,12 +132,7 @@ public class MyUIManager_Stage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (MyGameManager.Instance.GameState)
-            {
-                MyGameManager.Instance.GameState = false;
-                Time.timeScale = 0;
-                ui_Pause.SetActive(true);
-            }
+            SetUI_Pause();
         }
     }
 }
